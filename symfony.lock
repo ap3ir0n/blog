@@ -1,4 +1,13 @@
 {
+    "beberlei/assert": {
+        "version": "v2.9.5"
+    },
+    "paragonie/random_compat": {
+        "version": "v2.0.15"
+    },
+    "ramsey/uuid": {
+        "version": "3.7.3"
+    },
     "symfony/flex": {
         "version": "1.0",
         "recipe": {
