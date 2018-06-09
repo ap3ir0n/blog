@@ -2,6 +2,12 @@
     "beberlei/assert": {
         "version": "v2.9.5"
     },
+    "broadway/broadway": {
+        "version": "2.0.1"
+    },
+    "broadway/uuid-generator": {
+        "version": "0.4.0"
+    },
     "paragonie/random_compat": {
         "version": "v2.0.15"
     },

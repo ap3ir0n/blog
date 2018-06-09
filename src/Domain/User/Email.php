@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: patri
- * Date: 09/06/2018
- * Time: 16:49
- */
+declare(strict_types=1);
 
 namespace App\Domain\User;
 
