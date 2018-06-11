@@ -62,5 +62,20 @@ final class UserView implements SerializableReadModel
         return $this->uuid->toString();
     }
 
+    /**
+     * @return UuidInterface
+     */
+    public function uuid(): UuidInterface
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @return Credentials
+     */
+    public function credentials(): Credentials
+    {
+        return $this->credentials;
+    }
 
 }

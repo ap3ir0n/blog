@@ -7,8 +7,12 @@ declare(strict_types=1);
 
 namespace App\Tests\Application\Query\User;
 
+use App\Application\Query\Item;
 use App\Application\Query\User\FindByEmailHandler;
+use App\Application\Query\User\FindByEmailQuery;
+use App\Infrastructure\User\Query\UserView;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
 class FindByEmailHandlerTest extends TestCase
 {
@@ -17,7 +21,7 @@ class FindByEmailHandlerTest extends TestCase
      *
      * @group integration
      */
-    public function query_command_integration()
+    public function queryCommandIntegration()
     {
         $email = $this->createUserRead();
 
@@ -26,11 +30,11 @@ class FindByEmailHandlerTest extends TestCase
         /** @var Item $item */
         $item = $this->ask(new FindByEmailQuery($email));
         /** @var UserView $userRead */
-        $userRead = $item->readModel;
+        $userRead = $item->readModel();
 
         self::assertInstanceOf(Item::class, $item);
         self::assertInstanceOf(UserView::class, $userRead);
-        self::assertEquals($email, $userRead->credentials->email);
+        self::assertEquals($email, $userRead->credentials()->email());
     }
 
     private function createUserRead(): string
