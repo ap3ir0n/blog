@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Domain\User;
 
 
-class Credentials
+final class Credentials
 {
     /** @var Email */
     private $email;

@@ -24,6 +24,11 @@ services:
             tags:
                 - { name: tactician.handler, typehints: true, bus: query }
 
+        Broadway\EventHandling\EventListener:
+            public: true
+            tags:
+                - { name: broadway.domain.event_listener }
+
     App\:
         resource: '../src/*'
         exclude: '../src/**/{Migrations,EventSubscriber}'

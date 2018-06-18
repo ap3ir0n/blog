@@ -19,7 +19,6 @@ class SignUpHandlerTest extends ApplicationTestCase
      */
     public function commandHandlerMustFireDomainEvent()
     {
-
         $command = new SignUpCommand(
             'a187784a-c7b4-4da3-a50e-a98a91d32cb3',
             'p.fazzi@test.com',

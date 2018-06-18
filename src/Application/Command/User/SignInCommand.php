@@ -20,4 +20,21 @@ final class SignInCommand
         $this->email = Email::fromString($email);
         $this->plainPassword = $plainPassword;
     }
+
+    /**
+     * @return Email
+     */
+    public function email(): Email
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return string
+     */
+    public function plainPassword(): string
+    {
+        return $this->plainPassword;
+    }
+
 }

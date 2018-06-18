@@ -13,4 +13,8 @@ interface UserReadModelRepositoryInterface
     public function oneByUuid(UuidInterface $uuid): UserView;
 
     public function oneByEmail(Email $email): UserView;
+
+    public function add(UserView $userRead): void;
+
+    public function apply(): void;
 }

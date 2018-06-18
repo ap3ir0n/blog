@@ -17,11 +17,11 @@ final class FindByEmailQuery
 
     /**
      * FindByEmailQuery constructor.
-     * @param Email $email
+     * @param string $email
      */
-    public function __construct(Email $email)
+    public function __construct(string $email)
     {
-        $this->email = $email;
+        $this->email = Email::fromString($email);
     }
 
     /**

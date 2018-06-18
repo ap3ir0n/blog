@@ -7,14 +7,16 @@ declare(strict_types=1);
 
 namespace App\Tests\Application\Query\User;
 
+use App\Application\Command\User\SignUpCommand;
 use App\Application\Query\Item;
 use App\Application\Query\User\FindByEmailHandler;
 use App\Application\Query\User\FindByEmailQuery;
 use App\Infrastructure\User\Query\UserView;
+use App\Tests\Application\ApplicationTestCase;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
-class FindByEmailHandlerTest extends TestCase
+class FindByEmailHandlerTest extends ApplicationTestCase
 {
     /**
      * @test
@@ -25,10 +27,9 @@ class FindByEmailHandlerTest extends TestCase
     {
         $email = $this->createUserRead();
 
-        $this->fireTerminateEvent();
-
         /** @var Item $item */
         $item = $this->ask(new FindByEmailQuery($email));
+
         /** @var UserView $userRead */
         $userRead = $item->readModel();
 
@@ -40,9 +41,13 @@ class FindByEmailHandlerTest extends TestCase
     private function createUserRead(): string
     {
         $uuid = Uuid::uuid4()->toString();
-        $email = 'lol@lol.com';
+        $email = 'p.fazzi@test.com';
 
-        $this->handle(new SignUpCommand($uuid, $email, 'password'));
+        $this->handle(new SignUpCommand(
+            $uuid,
+            $email,
+            'verySecretPassword'
+        ));
 
         return $email;
     }

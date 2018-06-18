@@ -5,9 +5,10 @@ namespace App\Application\Query\User;
 
 
 use App\Application\Query\Item;
+use App\Application\Query\QueryHandlerInterface;
 use App\Domain\User\UserReadModelRepositoryInterface;
 
-final class FindByEmailHandler
+final class FindByEmailHandler implements QueryHandlerInterface
 {
     /** @var UserReadModelRepositoryInterface */
     private $repository;

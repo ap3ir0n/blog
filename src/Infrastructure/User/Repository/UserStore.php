@@ -8,7 +8,6 @@ namespace App\Infrastructure\User\Repository;
 use App\Domain\User\User;
 use App\Domain\User\UserRepositoryInterface;
 use Broadway\EventHandling\EventBus;
-use Broadway\EventSourcing\AggregateFactory\AggregateFactory;
 use Broadway\EventSourcing\AggregateFactory\PublicConstructorAggregateFactory;
 use Broadway\EventSourcing\EventSourcingRepository;
 use Broadway\EventStore\EventStore;
