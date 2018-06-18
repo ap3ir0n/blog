@@ -40,4 +40,9 @@ class ApplicationTestCase extends KernelTestCase
     {
         $this->commandBus->handle($command);
     }
+
+    protected function service(string $serviceId)
+    {
+        return self::$container->get($serviceId);
+    }
 }

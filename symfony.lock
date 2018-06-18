@@ -26,6 +26,15 @@
     "broadway/uuid-generator": {
         "version": "0.4.0"
     },
+    "dama/doctrine-test-bundle": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "4.0",
+            "ref": "56eaa387b5e48ebcc7c95a893b47dfa1ad51449c"
+        }
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -199,6 +208,15 @@
     },
     "symfony/orm-pack": {
         "version": "v1.0.5"
+    },
+    "symfony/phpunit-bridge": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "179470cb6492db92dffee208cfdb436f175c93b4"
+        }
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.8.0"
