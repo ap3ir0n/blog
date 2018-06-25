@@ -4,6 +4,13 @@ declare(strict_types=1);
 namespace App\Domain\User;
 
 
+use App\Domain\User\Event\UserEmailChanged;
+use App\Domain\User\Event\UserSignedIn;
+use App\Domain\User\Event\UserWasCreated;
+use App\Domain\User\Exception\InvalidCredentialsException;
+use App\Domain\User\ValueObject\Credentials;
+use App\Domain\User\ValueObject\Email;
+use App\Domain\User\ValueObject\HashedPassword;
 use Assert\Assertion;
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
 use Ramsey\Uuid\UuidInterface;

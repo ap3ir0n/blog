@@ -1,19 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Infrastructure\User\Query;
+namespace App\Domain\User\Event;
 
 
-use App\Domain\User\ValueObject\Credentials;
 use App\Domain\User\ValueObject\Email;
+use App\Domain\User\ValueObject\Credentials;
 use App\Domain\User\ValueObject\HashedPassword;
 use Assert\Assertion;
-use Broadway\ReadModel\SerializableReadModel;
 use Broadway\Serializer\Serializable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-final class UserView implements SerializableReadModel
+final class UserWasCreated implements Serializable
 {
     /** @var UuidInterface */
     private $uuid;
@@ -27,22 +26,28 @@ final class UserView implements SerializableReadModel
         $this->credentials = $credentials;
     }
 
-    public static function fromSerializable(Serializable $serializable): self
+    public function credentials(): Credentials
     {
-        return self::deserialize($serializable->serialize());
+        return $this->credentials;
     }
 
-    public static function deserialize(array $data)
+    public function uuid(): UuidInterface
+    {
+        return $this->uuid;
+    }
+
+    public static function deserialize(array $data): self
     {
         Assertion::keyExists($data, 'uuid');
         Assertion::keyExists($data, 'credentials');
         Assertion::keyExists($data['credentials'], 'email');
+        Assertion::keyExists($data['credentials'], 'password');
 
         return new self(
             Uuid::fromString($data['uuid']),
             new Credentials(
                 Email::fromString($data['credentials']['email']),
-                HashedPassword::fromHash($data['credentials']['password'] ?? '')
+                HashedPassword::fromHash($data['credentials']['password'])
             )
         );
     }
@@ -50,32 +55,11 @@ final class UserView implements SerializableReadModel
     public function serialize(): array
     {
         return [
-            'uuid'        => $this->getId(),
+            'uuid' => $this->uuid->toString(),
             'credentials' => [
-                'email' => (string) $this->credentials->email(),
-            ],
+                'email' => $this->credentials->email()->toString(),
+                'password' => $this->credentials->password()->toString()
+            ]
         ];
     }
-
-    public function getId(): string
-    {
-        return $this->uuid->toString();
-    }
-
-    /**
-     * @return UuidInterface
-     */
-    public function uuid(): UuidInterface
-    {
-        return $this->uuid;
-    }
-
-    /**
-     * @return Credentials
-     */
-    public function credentials(): Credentials
-    {
-        return $this->credentials;
-    }
-
 }

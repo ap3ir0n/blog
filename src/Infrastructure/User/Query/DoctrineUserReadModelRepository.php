@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Infrastructure\User\Query;
 
 
-use App\Domain\User\Email;
-use App\Domain\User\UserCollectionInterface;
-use App\Domain\User\UserReadModelRepositoryInterface;
-use App\Infrastructure\Share\Query\Repository\DoctrineRepository;
+use App\Domain\User\Repository\UserCollectionInterface;
+use App\Domain\User\Query\Repository\UserReadModelRepositoryInterface;
+use App\Domain\User\ValueObject\Email;
+use App\Infrastructure\Shared\Query\Repository\DoctrineRepository;
 use Ramsey\Uuid\UuidInterface;
 
 final class DoctrineUserReadModelRepository extends DoctrineRepository implements UserCollectionInterface, UserReadModelRepositoryInterface

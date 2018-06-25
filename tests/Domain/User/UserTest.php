@@ -8,14 +8,14 @@
 
 namespace App\Tests\Domain\User;
 
-use App\Domain\User\Credentials;
-use App\Domain\User\Email;
-use App\Domain\User\HashedPassword;
-use App\Domain\User\InvalidCredentialsException;
+use App\Domain\User\ValueObject\Credentials;
+use App\Domain\User\ValueObject\Email;
+use App\Domain\User\ValueObject\HashedPassword;
+use App\Domain\User\Exception\InvalidCredentialsException;
 use App\Domain\User\User;
-use App\Domain\User\UserEmailChanged;
-use App\Domain\User\UserSignedIn;
-use App\Domain\User\UserWasCreated;
+use App\Domain\User\Event\UserEmailChanged;
+use App\Domain\User\Event\UserSignedIn;
+use App\Domain\User\Event\UserWasCreated;
 use Broadway\Domain\DomainMessage;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -118,7 +118,7 @@ class UserTest extends TestCase
     /**
      * @test
      * @group unit
-     * @expectedException \App\Domain\User\InvalidCredentialsException
+     * @expectedException \App\Domain\User\Exception\InvalidCredentialsException
      */
     public function givenWrongPasswordItShouldNotSignIn()
     {
